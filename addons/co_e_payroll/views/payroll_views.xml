@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        <menuitem id="menu_main_epayroll_menu" sequence="2" name="E-payroll"  web_icon="hr_attendance,static/description/icon.png"/>-->
+        <record id="view_payroll_form" model="ir.ui.view">
+            <field name="name">Nomina Electronica</field>
+            <field name="model">payroll.dian</field>
+            <field name="arch" type="xml">
+                <form string="Nomina electronica">
+                    <header>
+                        <button name="post" string="Validar" class="oe_highlight" type="object"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field readonly="1" name="name"/>
+                            </h1>
+                        </div>
+                        <!-- ======================
+                            FORM PRINCIPAL (3 columnas)
+                        ====================== -->
+                        <group col="3">
+                            <!-- Identificación -->
+                            <group string="Identificación del Empleado">
+                                <field readonly="1" name="prefijo"/>
+                                <field readonly="1" name="consecutivo"/>
+                                <field readonly="1" name="empleado"/>
+                                <field readonly="1" name="tipo_documento"/>
+                                <field readonly="1" name="numero_documento"/>
+                                <field readonly="1" name="primer_nombre"/>
+                                <field readonly="1" name="segundo_nombre"/>
+                                <field readonly="1" name="primer_apellido"/>
+                                <field readonly="1" name="segundo_apellido"/>
+                                <field readonly="1" name="tip_contrato_trabajador" required="1"/>
+                                <field readonly="1" name="codigo_pais"/>
+                                <field readonly="1" name="codigo_dep_nomina"/>
+                                <field readonly="1" name="codigo_ciu_nomina"/>
+                            </group>
+                            <!-- Forma de pago -->
+                            <group string="Forma de Pago">
+                                <field readonly="1" name="fecha_pago"/>
+                                <field readonly="1" name="metodo_pag"/>
+                                <field readonly="1" name="banco"/>
+                                <field readonly="1" name="tipo_cuenta"/>
+                                <field readonly="1" name="numero_cuenta"/>
+                            </group>
+                            <!-- Datos de Nómina -->
+                            <group string="Datos de Nómina">
+                                <field readonly="1" name="fecha_ingreso"/>
+                                <field readonly="1" name="tiempo_laborado"/>
+                                <field readonly="1" name="fecha_ini_pago"/>
+                                <field readonly="1" name="fecha_fin_pago"/>
+                                <field readonly="1" name="fecha_liquidacion"/>
+                                <field readonly="1" name="periodo_nomina"/>
+                                <field readonly="1" name="tipo_nomina"/>
+                                <field readonly="1" name="nota_ajuste"/>
+                                <field readonly="1" name="nomina_ajustar"/>
+                                <field readonly="1" name="dias_trabajados"/>
+                                <field readonly="1" name="tipo_monedas"/>
+                                <field readonly="1" name="trm"/>
+                            </group>
+                        </group>
+                        <group >
+                            <!-- Información Salarial -->
+                            <group string="Información Salarial">
+                                <field readonly="1" name="salario_integral"/>
+                                <field readonly="1" name="alto_riesgo_pension"/>
+                                <field readonly="1" name="sueldo_trabajado"/>
+                                <field readonly="1" name="auxilio_transporte"/>
+                            </group>
+                            <!-- Totales -->
+                            <group string="Totales">
+                                <field readonly="1" name="total_devengados"/>
+                                <field readonly="1" name="total_deducciones"/>
+                                <field readonly="1" name="total_comprobante"/>
+                                <field readonly="1" name="notas"/>
+                            </group>
+                        </group>
+               
+                        <notebook>
+       
+                            <page string="Horas Extras">
+                                <group col="3">
+                                    <group>
+                                        <separator string="HED - Hora extra diurna"/>
+                                        <field readonly="1" name="fecha_hora_inicio_hed"/>
+                                        <field readonly="1" name="fecha_hora_fin_hed"/>
+                                        <field readonly="1" name="cantidad_hed"/>
+                                        <field readonly="1" name="porcentaje_hed"/>
+                                        <field readonly="1" name="valor_pago_hed"/>
+                                    </group>
+                                    <group>
+                                        <separator string="HEN - Hora extra nocturna"/>
+                                        <field readonly="1" name="fecha_hora_inicio_hen"/>
+                                        <field readonly="1" name="fecha_hora_fin_hen"/>
+                                        <field readonly="1" name="cantidad_hen"/>
+                                        <field readonly="1" name="porcentaje_hen"/>
+                                        <field readonly="1" name="valor_pago_hen"/>
+                                    </group>
+                                    <group>
+                                        <separator string="HRN - Recargo nocturno"/>
+                                        <field readonly="1" name="fecha_hora_inicio_hrn"/>
+                                        <field readonly="1" name="fecha_hora_fin_hrn"/>
+                                        <field readonly="1" name="cantidad_hrn"/>
+                                        <field readonly="1" name="porcentaje_hrn"/>
+                                        <field readonly="1" name="valor_pago_hrn"/>
+                                    </group>
+                                </group>
+                                <group col="3">
+                                    <group>
+                                        <separator string="HEDDF - Extra Diurna Dominical/Festivo"/>
+                                        <field readonly="1" name="fecha_hora_inicio_heddf"/>
+                                        <field readonly="1" name="fecha_hora_fin_heddf"/>
+                                        <field readonly="1" name="cantidad_heddf"/>
+                                        <field readonly="1" name="porcentaje_heddf"/>
+                                        <field readonly="1" name="valor_pago_heddf"/>
+                                    </group>
+                                    <group>
+                                        <separator string="HRDDF - Recargo Diurno Dominical/Festivo"/>
+                                        <field readonly="1" name="fecha_hora_inicio_hrddf"/>
+                                        <field readonly="1" name="fecha_hora_fin_hrddf"/>
+                                        <field readonly="1" name="cantidad_hrddf"/>
+                                        <field readonly="1" name="porcentaje_hrddf"/>
+                                        <field readonly="1" name="valor_pago_hrddf"/>
+                                    </group>
+                                    <group>
+                                        <separator string="HENDF - Extra Nocturna Dominical/Festivo"/>
+                                        <field readonly="1" name="fecha_hora_inicio_hendf"/>
+                                        <field readonly="1" name="fecha_hora_fin_hendf"/>
+                                        <field readonly="1" name="cantidad_hendf"/>
+                                        <field readonly="1" name="porcentaje_hendf"/>
+                                        <field readonly="1" name="valor_pago_hendf"/>
+                                    </group>
+                                    <group>
+                                        <separator string="HRNDF - Recargo Nocturno Dominical/Festivo"/>
+                                        <field readonly="1" name="fecha_hora_inicio_hrndf"/>
+                                        <field readonly="1" name="fecha_hora_fin_hrndf"/>
+                                        <field readonly="1" name="cantidad_hrndf"/>
+                                        <field readonly="1" name="porcentaje_hrndf"/>
+                                        <field readonly="1" name="valor_pago_hrndf"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Vacaciones">
+                                <group col="2">
+                                    <group>
+                                        <separator string="Vacaciones Comunes"/>
+                                        <field readonly="1" name="fecha_inicio_vacaciones"/>
+                                        <field readonly="1" name="fecha_fin_vacaciones"/>
+                                        <field readonly="1" name="cantidad_vacaciones"/>
+                                        <field readonly="1" name="valor_pago_vacaciones"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Compensadas"/>
+                                        <field readonly="1" name="cantidad_vacaciones_compensadas"/>
+                                        <field readonly="1" name="valor_pago_vac"/>
+                                    </group>
+                                </group>
+                            </page>
+                 
+                            <page string="Primas">
+                                <group col="3">
+                                    <field readonly="1" name="cantidad_dias_primas"/>
+                                    <field readonly="1" name="pago_salarial_prima"/>
+                                    <field readonly="1" name="pago_no_salarial_prima"/>
+                                </group>
+                            </page>
+                          
+                            <page string="Cesantías">
+                                <group col="3">
+                                    <field readonly="1" name="porcentaje_cesantias"/>
+                                    <field readonly="1" name="pago_cesantias"/>
+                                    <field readonly="1" name="pago_intereses_cesantias"/>
+                                </group>
+                            </page>
+                          
+                            <page string="Incapacidad">
+                                <group col="3">
+                                    <field readonly="1" name="fecha_inicio_incapacidad"/>
+                                    <field readonly="1" name="fecha_fin_incapacidad"/>
+                                    <field readonly="1" name="cantidad_incapacidad"/>
+                                    <field readonly="1" name="tipo_incapacidad"/>
+                                    <field readonly="1" name="valor_pago_incapacidad"/>
+                                </group>
+                            </page>
+                          
+                            <page string="Licencias">
+                                <group col="3">
+                                    <group>
+                                        <separator string="Maternidad / Paternidad"/>
+                                        <field readonly="1" name="fecha_inicio_mp"/>
+                                        <field readonly="1" name="fecha_fin_mp"/>
+                                        <field readonly="1" name="cantidad_mp"/>
+                                        <field readonly="1" name="valor_pago_mp"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Remuneradas (R)"/>
+                                        <field readonly="1" name="fecha_inicio_r"/>
+                                        <field readonly="1" name="fecha_fin_r"/>
+                                        <field readonly="1" name="cantidad_r"/>
+                                        <field readonly="1" name="valor_pago_r"/>
+                                    </group>
+                                    <group>
+                                        <separator string="No remuneradas"/>
+                                        <field readonly="1" name="fecha_inicio_nr"/>
+                                        <field readonly="1" name="fecha_fin_nr"/>
+                                        <field readonly="1" name="cantidad_nr"/>
+                                    </group>
+                                </group>
+                            </page>
+                          
+                            <page string="Auxilios / Bonificaciones / Otros">
+                                <group col="3">
+                                    <group>
+                                        <separator string="Bonificación"/>
+                                        <field readonly="1" name="bonificacion_salarial"/>
+                                        <field readonly="1" name="bonificacion_no_salarial"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Auxilios"/>
+                                        <field readonly="1" name="auxilio_salarial"/>
+                                        <field readonly="1" name="auxilio_no_salarial"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Otros Conceptos"/>
+                                        <field readonly="1" name="descripcion_concepto"/>
+                                        <field readonly="1" name="concepto_salarial"/>
+                                        <field readonly="1" name="concepto_no_salarial"/>
+                                    </group>
+                                </group>
+                                <group col="3">
+                                    <group>
+                                        <separator string="Comisiones / Otros"/>
+                                        <field readonly="1" name="comision"/>
+                                        <field readonly="1" name="pago_terceros"/>
+                                        <field readonly="1" name="devengos_anticipo"/>
+                                        <field readonly="1" name="dotacion"/>
+                                        <field readonly="1" name="apoyo"/>
+                                        <field readonly="1" name="teletrabajo"/>
+                                        <field readonly="1" name="bonifretiro"/>
+                                        <field readonly="1" name="indemnizacion"/>
+                                        <field readonly="1" name="reintegro"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Viáticos"/>
+                                        <field readonly="1" name="viaticos_mas"/>
+                                        <field readonly="1" name="viaticos_mans"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Bono EPCTV"/>
+                                        <field readonly="1" name="pago_salarial"/>
+                                        <field readonly="1" name="pago_no_salarial"/>
+                                        <field readonly="1" name="pago_alimentacion_salarial"/>
+                                        <field readonly="1" name="pago_alim_no_salarial"/>
+                                    </group>
+                                </group>
+                            </page>
+                            
+                            <page string="Deducciones">
+                                <group col="3">
+                                    <group>
+                                        <separator string="Obligatorias"/>
+                                        <field readonly="1" name="porcentaje_salud"/>
+                                        <field readonly="1" name="deduccion_salud"/>
+                                        <field readonly="1" name="porcentaje_pension"/>
+                                        <field readonly="1" name="deduccion_pension"/>
+                                        <field readonly="1" name="porcentaje_seguridad_pensional"/>
+                                        <field readonly="1" name="deduccion_seguridad_pensional"/>
+                                        <field readonly="1" name="porcentaje_de_subsistencia"/>
+                                        <field readonly="1" name="deduccion_subsistencia"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Otras deducciones"/>
+                                        <field readonly="1" name="pension"/>
+                                        <field readonly="1" name="retencion"/>
+                                        <field readonly="1" name="afc"/>
+                                        <field readonly="1" name="cooperativa"/>
+                                        <field readonly="1" name="embargo"/>
+                                        <field readonly="1" name="plan"/>
+                                        <field readonly="1" name="educacion"/>
+                                    </group>
+                                    <group>
+                                        <separator string="Adicionales"/>
+                                        <field readonly="1" name="reintegro_otras_deducciones"/>
+                                        <field readonly="1" name="deuda"/>
+                                        <field readonly="1" name="deduccion_pago_tercero"/>
+                                        <field readonly="1" name="deduccion_anticipo"/>
+                                        <field readonly="1" name="otra_deduccion"/>
+                                    </group>
+                                </group>
+                            </page>
+                           
+                            <page string="Sindicatos">
+                                <group col="3">
+                                    <field readonly="1" name="porcentaje_sindicatos"/>
+                                    <field readonly="1" name="deduccion_sindicatos"/>
+                                </group>
+                            </page>
+                           
+                            <page string="Sanciones">
+                                <group col="3">
+                                    <field readonly="1" name="sancion_publica"/>
+                                    <field readonly="1" name="sancion_privada"/>
+                                </group>
+                            </page>
+                          
+                            <page string="Libranzas">
+                                <group col="3">
+                                    <field readonly="1" name="descripcion_libranza"/>
+                                    <field readonly="1" name="deduccion_libranza"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="payrolldian_view_tree" model="ir.ui.view">
+            <field name="name">payroll_dian_view_tree</field>
+            <field name="model">payroll.dian</field>
+            <field name="arch" type="xml">
+                <list string="payroll">
+                    <field name="name"/>
+                    <field name="numero_documento"/>
+                    <field name="empleado"/>
+                    <field name="year"/>
+                    <field name="month"/>
+                </list>
+            </field>
+        </record>
+        <record id="account_payroll_dian_document_action" model="ir.actions.act_window">
+            <field name="name">Comprobantes de Pago</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payroll.dian</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <!--        <menuitem id="payroll_menu" name="Nomina Electronica" parent="menu_main_epayroll_menu"/>-->
+        <!--        <menuitem id="payroll_list_menu" name="Nomina"-->
+        <!--                  parent="payroll_menu"-->
+        <!--                  action="account_payroll_dian_document_action"/>-->
+        <record id="payroll_dian_document_action" model="ir.actions.act_window">
+            <field name="name">Documentos DIAN</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payroll.dian.document</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="account_invoice_dian_document_view_form" model="ir.ui.view">
+            <field name="model">payroll.dian.document</field>
+            <field name="arch" type="xml">
+                <form string="Documentos DIAN">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,done,cancel"/>
+                        <button name="action_set_files" 
+                string="Cargar Archivos"
+                icon="fa-upload"
+                type="object"
+                class="btn-primary"
+                invisible="state != 'draft'"/>
+                        <button name="action_sent_zipped_file"
+                string="Enviar Archivo ZIP"
+                icon="fa-paper-plane"
+                type="object"
+                class="btn-primary"
+                invisible="not xml_file or not zipped_file or state in ('done','cancel')"/>
+                        <button name="action_GetStatusZip"
+                string="Consultar Estado ZIP"
+                icon="fa-search"
+                type="object"
+                class="btn-secondary"
+                invisible="not zip_key"/>
+                        <button name="action_GetStatus"
+                string="Consultar Estado DIAN"
+                icon="fa-check-circle"
+                type="object"
+                class="btn-secondary"
+                invisible="not cufe_cude or not xml_file or not zipped_file or state in ('draft','cancel')"/>
+                        <button name="action_reprocess"
+                string="Reprocesar"
+                icon="fa-refresh"
+                type="object"
+                class="btn-warning"/>
+                        <button name="action_send_mail"
+                string="Reenviar Correo"
+                icon="fa-envelope"
+                type="object"
+                class="btn-info"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Documento / Nómina">
+                                <field name="nomina_id" string="Nómina" readonly="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="invoice_url" string="URL Factura" widget="url" readonly="1"/>
+                            </group>
+                            <group string="Archivos">
+                                <field name="xml_file" string="Archivo XML" widget="binary" filename="xml_filename"/>
+                                <field name="zipped_file" string="Archivo ZIP" widget="binary" filename="zipped_filename" readonly="1"/>
+                                <field name="ar_xml_file" string="Respuesta DIAN (XML)" widget="binary" filename="ar_xml_filename" readonly="1"/>
+                                <field name="mail_sent" string="Correo Enviado?"/>
+                            </group>
+                            <group string="Códigos DIAN">
+                                <button name="change_cufe" string="Cambiar CUFE/CUDE" icon="fa-edit" type="object" class="oe_link" groups="base.group_no_one"/>
+                                <button name="return_cufe" string="Restaurar CUFE/CUDE" icon="fa-undo" type="object" class="oe_link"
+                        invisible="not origin_cufe_cude or origin_cufe_cude == ''" groups="base.group_no_one"/>
+                                <field name="cufe_cude" string="CUFE/CUDE" readonly="1"/>
+                                <field name="cufe_cude_uncoded" string="CUFE/CUDE Original" readonly="1"/>
+                                <field name="origin_cufe_cude" string="CUFE/CUDE Previo" readonly="1" groups="base.group_no_one"/>
+                                <field name="software_security_code_uncoded" string="Código Seguridad Uncoded" readonly="1"/>
+                                <field name="software_security_code" string="Código Seguridad" readonly="1"/>
+                                <field name="zip_key" string="Zip Key" readonly="1"/>
+                            </group>
+                            <group string="Código QR">
+                                <field name="qr_image" widget="image" style="width:200px;height:200px" nolabel="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Estado DIAN">
+                                <group>
+                                    <field name="get_status_zip_status_code" string="Código Estado" readonly="1"/>
+                                    <field name="get_status_zip_response" string="Respuesta DIAN" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+        <record id="payroll_dian_document_view_tree" model="ir.ui.view">
+            <field name="name">payroll_dian_view_tree</field>
+            <field name="model">payroll.dian.document</field>
+            <field name="arch" type="xml">
+                <list string="payroll dian">
+                    <field name="nomina_id"/>
+                    <field name="cufe_cude" string="CUNE"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+        <!--        <menuitem id="payroll_dian_document_menu"-->
+        <!--            name="DIAN Documents"-->
+        <!--            action="payroll_dian_document_action"-->
+        <!--            parent="payroll_menu"-->
+        <!--            sequence="2"/>-->
+        <record id="action_multi_nomina" model="ir.actions.server">
+            <field name="name">Nomina Validar</field>
+            <field name="model_id" ref="l10n_co_e_payroll.model_payroll_dian"/>
+            <field name="binding_model_id" ref="l10n_co_e_payroll.model_payroll_dian"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    records.post()
+            </field>
+        </record>
+        <record id="action_multi_verificadorzip" model="ir.actions.server">
+            <field name="name">Validar Zip</field>
+            <field name="model_id" ref="l10n_co_e_payroll.model_payroll_dian_document"/>
+            <field name="binding_model_id" ref="l10n_co_e_payroll.model_payroll_dian_document"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    records.action_GetStatusZipmulti()
+            </field>
+        </record>
+        <record id="action_multi_verificador" model="ir.actions.server">
+            <field name="name">Validar Produccion</field>
+            <field name="model_id" ref="l10n_co_e_payroll.model_payroll_dian_document"/>
+            <field name="binding_model_id" ref="l10n_co_e_payroll.model_payroll_dian_document"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    records.action_GetStatusMulti()
+            </field>
+        </record>
+    </data>
+</odoo>
